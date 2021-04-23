@@ -28,6 +28,13 @@ class ListViewTest(TestCase):
         self.assertContains(response, 'itemey 2')
         self.assertNotContains(response, 'I should not appear')
 
+    def test_passes_correct_list_to_template(self):
+        other_list = List.objects.create()
+        list_ = List.objects.create()
+
+        response = self.client.get(f'/lists/{list_.id}/')
+
+        self.assertEqual(response.context['list'], list_)
 
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
@@ -92,7 +99,7 @@ class NewItemTest(TestCase):
             data={'item_text': 'item text'}
         )
 
-        self.assertRedirects(response, f'/lists/{list_.id}')
+        self.assertRedirects(response, f'/lists/{list_.id}/')
 
     def test_POST_adds_item_to_list(self):
         other_list = List.objects.create()
