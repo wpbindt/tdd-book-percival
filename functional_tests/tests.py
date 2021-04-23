@@ -4,7 +4,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 import time
 
-MAX_WAIT = 10
+MAX_WAIT = 5
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -67,13 +67,6 @@ class NewVisitorTest(LiveServerTestCase):
         self.wait_for_row_in_list_table(
             '2: Use peacock feathers to make a fly'
         )
-
-        # Edith wonders whether the site will remember her list. Then she sees
-        # that the site has generated a unique URL for her -- there is some
-        # explanatory text to that effect.
-        self.fail('Finish the test!')
-
-        # She visits that URL - her to-do list is still there.
 
         # Satisfied, she goes back to sleep
 
