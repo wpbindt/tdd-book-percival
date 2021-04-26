@@ -119,8 +119,21 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.set_window_size(window_width, 768)
         self.browser.set_window_size(window_width, 768)
 
-
         # She notices the input box is centered
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            window_width / 2,
+            delta=10
+        )
+
+        # She adds an item to her to do list
+        inputbox.send_keys('New item!')
+        inputbox.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: New item!')
+
+        # She notices that on the list-specific page, the input box
+        # is still nicely centered
         inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
