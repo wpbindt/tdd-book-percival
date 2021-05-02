@@ -120,9 +120,10 @@ class NewVisitorTest(StaticLiveServerTestCase):
         window_width = 1024
         ## Not a clue why, but removing either of the next two lines
         ## results in the window not being resized at all
+        self.browser.set_window_size(window_width, 768)
         time.sleep(0.1)
         self.browser.set_window_size(window_width, 768)
-        self.browser.set_window_size(window_width, 768)
+        time.sleep(1)
 
         # She notices the input box is centered
         inputbox = self.browser.find_element_by_id('id_new_item')
