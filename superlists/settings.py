@@ -27,7 +27,7 @@ else:
     DEBUG = True
     SECRET_KEY = 'it does not matter'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['109.237.219.178']
 
 
 # Application definition
